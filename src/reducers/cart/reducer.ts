@@ -1,5 +1,6 @@
 import { produce } from "immer";
 import { OrderInfo } from "../../pages/Cart";
+import { ActionTypes } from "./actions";
 
 export interface CartItem {
   id: string;
@@ -21,14 +22,6 @@ type Action<T = any> = {
   type: string;
   payload?: T;
 };
-
-enum ActionTypes {
-  ADD_ITEM_TO_CART = "ADD_ITEM_TO_CART",
-  INCREMENT_ITEM_QUANTITY = "INCREMENT_ITEM_QUANTITY",
-  DECREMENT_ITEM_QUANTITY = "DECREMENT_ITEM_QUANTITY",
-  REMOVE_ITEM_FROM_CART = "REMOVE_ITEM_FROM_CART",
-  CHECKOUT_CART = "CHECKOUT_CART",
-}
 
 export function cartReducer(state: CartState, action: Action) {
   switch (action.type) {

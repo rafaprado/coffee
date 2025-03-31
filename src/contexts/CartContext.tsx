@@ -2,6 +2,13 @@ import { createContext, ReactNode, useReducer } from "react";
 import { CartItem, cartReducer, CartState } from "../reducers/cart/reducer";
 import { useNavigate } from "react-router-dom";
 import { OrderInfo } from "../pages/Cart";
+import {
+  addItemToCartAction,
+  checkOutAction,
+  decrementItemQuantityAction,
+  incrementItemQuantityAction,
+  removeItemFromCartAction,
+} from "../reducers/cart/actions";
 
 interface CartContextProps {
   addItemToCart: ({ id, quantity }: CartItem) => void;
@@ -27,49 +34,23 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
   const navigate = useNavigate();
 
   function addItemToCart(item: CartItem) {
-    dispatch({
-      type: "ADD_ITEM_TO_CART",
-      payload: {
-        item,
-      },
-    });
+    dispatch(addItemToCartAction(item));
   }
 
   function incrementItemQuantity(itemId: string) {
-    dispatch({
-      type: "INCREMENT_ITEM_QUANTITY",
-      payload: {
-        itemId,
-      },
-    });
+    dispatch(incrementItemQuantityAction(itemId));
   }
 
   function decrementItemQuantity(itemId: string) {
-    dispatch({
-      type: "DECREMENT_ITEM_QUANTITY",
-      payload: {
-        itemId,
-      },
-    });
+    dispatch(decrementItemQuantityAction(itemId));
   }
 
   function removeItemFromCart(itemId: string) {
-    dispatch({
-      type: "REMOVE_ITEM_FROM_CART",
-      payload: {
-        itemId,
-      },
-    });
+    dispatch(removeItemFromCartAction(itemId));
   }
 
   function checkout(order: OrderInfo) {
-    dispatch({
-      type: "CHECKOUT_CART",
-      payload: {
-        order,
-        callback: navigate,
-      },
-    });
+    dispatch(checkOutAction(order, navigate));
   }
 
   return (
