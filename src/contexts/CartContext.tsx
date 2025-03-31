@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useReducer } from "react";
+import { createContext, ReactNode, useEffect, useReducer } from "react";
 import { CartItem, cartReducer, CartState } from "../reducers/cart/reducer";
 import { useNavigate } from "react-router-dom";
 import { OrderInfo } from "../pages/Cart";
@@ -26,10 +26,30 @@ interface CartContextProviderProps {
 export const CartContext = createContext({} as CartContextProps);
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
-  const [cart, dispatch] = useReducer(cartReducer, {
-    coffees: [],
-    orders: [],
-  });
+  const [cart, dispatch] = useReducer(
+    cartReducer,
+    {
+      coffees: [],
+      orders: [],
+    },
+    (initialState) => {
+      const stateAsJSON = localStorage.getItem(
+        "@coffee-delivery:cart-state-1.0.0"
+      );
+
+      if (stateAsJSON) {
+        return JSON.parse(stateAsJSON);
+      }
+
+      return initialState;
+    }
+  );
+
+  useEffect(() => {
+    const stateAsJSON = JSON.stringify(cart);
+
+    localStorage.setItem("@coffee-delivery:cart-state-1.0.0", stateAsJSON);
+  }, [cart]);
 
   const navigate = useNavigate();
 
