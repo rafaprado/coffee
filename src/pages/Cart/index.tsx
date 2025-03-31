@@ -275,7 +275,10 @@ export function Cart() {
                           handleItemIncrement(coffee.id);
                         }}
                       />
-                      <button onClick={() => handleDeleteItem(coffee.id)}>
+                      <button
+                        onClick={() => handleDeleteItem(coffee.id)}
+                        type="button"
+                      >
                         <Trash size={16} />
                         Remover
                       </button>
