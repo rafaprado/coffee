@@ -45,7 +45,7 @@ export const Hero = styled.div`
 
   ul {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: max-content 1fr;
     list-style: none;
 
     margin-top: 66px;

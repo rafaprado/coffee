@@ -30,7 +30,7 @@ export function Home() {
                   <Package size={16} weight="fill" />
                 </HeroListIcon>
 
-                <span>Compra simples e segura</span>
+                <span>Embalagem mantém o café intacto</span>
               </li>
 
               <li>
@@ -38,7 +38,7 @@ export function Home() {
                   <Timer size={16} weight="fill" />
                 </HeroListIcon>
 
-                <span>Compra simples e segura</span>
+                <span>Entrega rápida e rastreada</span>
               </li>
 
               <li>
@@ -46,7 +46,7 @@ export function Home() {
                   <Coffee size={16} weight="fill" />
                 </HeroListIcon>
 
-                <span>Compra simples e segura</span>
+                <span>O café chega fresquinho até você</span>
               </li>
             </ul>
           </div>
