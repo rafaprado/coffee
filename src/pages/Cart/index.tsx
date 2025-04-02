@@ -13,7 +13,6 @@ import {
   CheckoutPaymentMethodCard,
   Coffee,
   CoffeeInfo,
-  ConfirmOrderButton,
   EmptyCartContainer,
   FinishOrderCard,
 } from "./styled";
@@ -28,6 +27,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useNavigate } from "react-router-dom";
+import { ConfirmOrderButton } from "./Components/ConfirmOrderButton";
 
 const createOrderValidationSchema = z.object({
   cep: z.string().regex(/^\d{5}-?\d{3}$/, "Informe um CEP válido."),
@@ -139,6 +139,7 @@ export function Cart() {
   }
 
   function handleCreateNewOrder(checkoutData: OrderInfo) {
+    console.log("Here");
     checkout(checkoutData);
   }
 
@@ -323,8 +324,8 @@ export function Cart() {
             </div>
           </CartTotalInfo>
 
-          <ConfirmOrderButton type="submit" disabled={cart.coffees.length < 1}>
-            confirmar pedido
+          <ConfirmOrderButton disabled={!!errors}>
+            <span>Confirmar Compra</span>
           </ConfirmOrderButton>
         </FinishOrderCard>
       </aside>
